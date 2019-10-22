@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1 id="header"></h1>
+        <input type="text" id="word" name="word">
+        <button type="submit" id="submit" name="submit">Submit</button>
+        <button type="button" name="double-wd" id="double-wd">Double Word Score</button>
+        <script>
+            let onePoint = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u", "L", "l", "N", "n", "R", "r", "S", "s", "T", "t"];
+            let twoPoint = ["D", "G"];
+            let threePoint = ["B", "C", "M", "P"];
+            let fourPoint = ["F", "H", "V", "W", "Y"];
+            let fivePoint = ["K"];
+            let eightPoint = ["J", "X"];
+            let tenPoint = ["Q", "Z"];
+
+            let word = document.getElementById("word").value;
+            let submitBtn = document.getElementById("submit");
+            let doubleWd = document.getElementById('double-wd');
+            let header = document.getElementById("header");
+            let score;
+
+            submitBtn.addEventListener("click", calc);
+            
+            function calc() {
+                score = 0;
+                word = document.getElementById("word").value;
+
+                for (let i = 0; i < word.length; i++) {
+                    console.log(word.charAt(i));
+                    if (onePoint.includes(word.charAt(i))) {
+                        score++;
+                    } else if (twoPoint.includes(word.charAt(i))) {
+                        score += 2;
+                    } else if (threePoint.includes(word.charAt(i))) {
+                        score += 3;
+                    } else if (fourPoint.includes(word.charAt(i))) {
+                        score += 4;
+                    } else if (fivePoint.includes(word.charAt(i))) {
+                        score += 5;
+                    } else if (eightPoint.includes(word.charAt(i))) {
+                        score += 8;
+                    } else if (tenPoint.includes(word.charAt(i))) {
+                        score += 10;
+                    } else {
+                        alert("You have entered an invalid value.");
+                    }
+                }
+                console.log(score);
+                header.innerHTML = score;
+            }
+
+            doubleWd.addEventListener("click", () => {
+                header.innerHTML = score *= 2;
+            });
+        </script>
+    </body>
+</html>
